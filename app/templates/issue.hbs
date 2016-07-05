@@ -1,1 +1,28 @@
+Hello there <b>{{user.name}}</b>!
+
+Who is your favorite artist?
+
+<br>
+{{#em-form model=user}}
+    {{em-select
+    label="Artist"
+          property="artists"
+      content=artists
+      optionValuePath="id"
+      optionLabelPath="name"
+      prompt="Who's your favorite artist?"
+      propertyIsModel=true
+    }}
+{{/em-form}}
+
+<br>
+{{#each users as |user|}}
+    Username: <a href="#" {{action 'setUser' user}}>{{user.name}}</a><br>
+    Favorite artist:
+    {{#each user.artists as |artist|}}
+        {{artist.name}}
+    {{/each}}
+    <br><br>
+{{/each}}
+
 {{outlet}}
